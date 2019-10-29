@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo15.dao.Userdao" >
+    <insert id="addUser" parameterType="com.example.demo15.Model.User" useGeneratedKeys="true" keyProperty="userID">
+        insert into UserInfo(UserName,UserPhone,UserEmail,Password)
+        values (#{user.userName},#{user.userPhone},#{user.userEmail},#{user.password})
+    </insert>
+
+    <select id="selectUsers" resultType="com.example.demo15.Model.User">
+        select * from userinfo
+    </select>
+
+    <select id="selectUserByUserName" resultType="com.example.demo15.Model.User">
+        select * from userinfo where UserName=#{name}
+    </select>
+
+    <select id="selectUserByUserID" resultType="com.example.demo15.Model.User">
+        select * from userinfo where UserID=#{userID}
+    </select>
+
+  <select id="selectUserByEmail" resultType="com.example.demo15.Model.User">
+      select * from userinfo where UserEmail=#{email}
+  </select>
+
+    <delete id="deleteUserByUserID">
+        delete * from userinfo where UserID=#{userID}
+    </delete>
+
+
+    <update id="updatePasswordByUserID">
+        update userinfo set Password=#{newPassword} where UserID=#{userID}
+    </update>
+
+    <update id="updateUserInfoByUserID">
+        update userinfo
+        set UserName=#{newUserInfo.userName},UserPhone=#{newUserInfo.userPhone}
+        where UserID=#{userID}
+    </update>
+
+
+
+
+
+</mapper>
