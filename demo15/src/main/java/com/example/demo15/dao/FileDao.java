@@ -14,11 +14,13 @@ public interface FileDao {
 
     public int updateFileNameByFileNum(@Param("fileNum") int fileNum,@Param("newName") String newName);//通过文件编号修改文件名
 
-    public int updateDownloadsByFileNum(@Param("fileNum") int fileNum,@Param("newDownloads") String newDownloads);//更新下载次数
+    public int updateDownloadsByFileNum(@Param("fileNum") int fileNum);//更新下载次数
 
     public int updateFileInfoByFileNum(@Param("fielNum") int fileNum,@Param("newFileInfo") String newFileInfo);//修改文件信息
 
     public File selectFileByFileNum(@Param("fileNum") int fileNum);
+
+    public List<File> selectFileByUserID(@Param("userID")int userID);
 
     //通过文件名查找所有文件
     public List<File> selectFileByFileName(@Param("fileName")String fileName);

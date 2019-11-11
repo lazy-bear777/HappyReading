@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Map;
+
 @Controller
 public class DoLogintest {
 
@@ -19,7 +21,26 @@ public class DoLogintest {
     @ResponseBody
     public ServerResponse<User> login(String username, String pswd)
     {
-        ServerResponse<User> response = iUserService.login(username,pswd);
-        return response;
+       // ServerResponse<User> response = iUserService.login(username,pswd);
+        return iUserService.login(username,pswd);
+    }
+
+    @RequestMapping("/checkEmail")
+    @ResponseBody
+    public ServerResponse<String> checkEmail(String email)
+    {
+        return iUserService.checkEmail(email);
+    }
+
+    @RequestMapping("/register")
+    @ResponseBody
+    public ServerResponse<User> doRegister(String userName,String password,String email,String telephone)
+    {
+        User user=new User();
+        user.setUserName(userName);
+        user.setPassword(password);
+        user.setUserEmail(email);
+        user.setUserPhone(telephone);
+        return iUserService.register(user);
     }
 }

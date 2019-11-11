@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo15.dao.FileDao" >
+
+    <insert id="addFileInfo" useGeneratedKeys="true" keyProperty="userID">
+        insert into file(UserID,FileName,URL,UpTime,Downloads,FileInfo)
+        values (#{file.userID},#{file.fileName},#{file.URL},#{file.upTime},#{file.downloads},#{file.fileInfo})
+    </insert>
+    <delete id="deleteFileByFileNum" >
+        delete * from file where FileNum=#{fileNum}
+    </delete>
+    <update id="updateFileNameByFileNum">
+        update file set FileName=#{newName} where FileNum=#{fileNum}
+    </update>
+    <update id="updateDownloadsByFileNum" >
+        update file set Downloads=Downloads+1 where FileNum=#{fileNum}
+    </update>
+    <update id="updateFileInfoByFileNum">
+
+    </update>
+    <select id="selectFileByFileNum" resultType="File">
+        select * from file where FileNum=#{fileNum}
+    </select>
+    <select id="selectFileByFileName" resultType="File">
+        select * from file where FileName like '%${fileName}%'
+    </select>
+
+    <select id="selectAllFile" resultType="File">
+        select * from file
+    </select>
+
+    <select id="selectFileByUserID" resultType="File">
+        select * from file where UserID=#{userID}
+    </select>
+
+</mapper>

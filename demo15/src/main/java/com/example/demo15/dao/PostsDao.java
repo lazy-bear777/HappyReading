@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface PostsDao {
 
-    public int createPostTable(@Param("tableName") String tableName);//创建一个用户帖子表 命名方式：post+用户ID postNum为主键 自增 都不能为空
+    
 
     public int addPost(@Param("posts") Posts posts); //添加一个帖子
 
