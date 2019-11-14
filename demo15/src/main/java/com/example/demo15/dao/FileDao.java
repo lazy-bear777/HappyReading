@@ -1,5 +1,6 @@
 package com.example.demo15.dao;
 
+import com.example.demo15.Model.BookBean;
 import com.example.demo15.Model.File;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -26,4 +27,6 @@ public interface FileDao {
     public List<File> selectFileByFileName(@Param("fileName")String fileName);
 
     public List<File> selectAllFile();
+
+    public List<BookBean> getBookBeans(@Param("fileName")String fileName);
 }

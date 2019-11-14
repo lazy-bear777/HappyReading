@@ -12,10 +12,16 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
+import com.example.szl.RequiestTest.FileUpload;
+import com.example.szl.RequiestTest.RetrofitGet;
+import com.example.szl.ResponseModel.File;
+
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import retrofit2.Retrofit;
 
 public class FileFunc {
 
@@ -105,45 +111,10 @@ public class FileFunc {
         return null;
     }
 
-    public static void upLoadFile(Context context,String upLoadURL, String filePath)
+    public static void fileUpload(int userID,String fileName,Context context)
     {
-        try{
-            URL url=new URL(upLoadURL);
-            HttpURLConnection connection=(HttpURLConnection)url.openConnection();
-
-            connection.setDoInput(true);
-            connection.setDoOutput(true);
-            connection.setUseCaches(false);
-
-            connection.setConnectTimeout(5000);
-            connection.setReadTimeout(5000);
-
-            connection.setRequestMethod("POST");
-            connection.setRequestProperty("Connection","keep-Alive");
-            connection.setRequestProperty("Content-Type","text/plain");
-
-            DataOutputStream dataOutputStream =new DataOutputStream(connection.getOutputStream());
-
-            FileInputStream fileInputStream=new FileInputStream(filePath);
-
-            int buffersize=1024;
-            byte[] buffer=new byte[buffersize];
-            int length=-1;
-            while ((length=fileInputStream.read(buffer))!=-1)
-            {
-                dataOutputStream.write(buffer,0,length);
-            }
-            dataOutputStream.flush();
-            fileInputStream.close();
-            dataOutputStream.close();
-            if(connection.getResponseCode()==200)
-            {
-                Toast.makeText(context,"上传成功",Toast.LENGTH_SHORT).show();
-            }
-        }catch (Exception e)
-        {
-            Toast.makeText(context,"上传失败",Toast.LENGTH_SHORT).show();
-        }
+        Retrofit retrofit= RetrofitGet.getRetrofit();
+        FileUpload fileUpload=retrofit.create(FileUpload)
     }
 
 }

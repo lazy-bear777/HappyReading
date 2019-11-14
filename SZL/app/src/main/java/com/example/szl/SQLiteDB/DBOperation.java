@@ -56,4 +56,12 @@ public class DBOperation {
         user_db.close();
         return register ;
     }
+    public int getUserID()
+    {
+        SQLiteDatabase user_db = helper.getReadableDatabase();
+        Cursor cursor = user_db.query("user_info", null,null,null,null,null,null);
+        cursor.moveToLast();
+        int userID =cursor.getInt(cursor.getColumnIndex("userID"));
+        return userID;
+    }
 }

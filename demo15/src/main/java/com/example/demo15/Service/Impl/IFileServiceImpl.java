@@ -1,6 +1,7 @@
 package com.example.demo15.Service.Impl;
 
 import com.example.demo15.Common.ServerResponse;
+import com.example.demo15.Model.BookBean;
 import com.example.demo15.Model.File;
 import com.example.demo15.Service.IFileService;
 import com.example.demo15.dao.FileDao;
@@ -21,9 +22,13 @@ public class IFileServiceImpl implements IFileService {
         return ServerResponse.createSuccessMessage("上传成功");
     }
 
-    @Override
-    public ServerResponse<List<File>> getFileByFileName(String fileName) {
-        List<File> files = fileDao.selectFileByFileName(fileName);
-        return ServerResponse.createSuccessMessageAndData("成功",files);
+    public ServerResponse<List<BookBean>> download(String fileName)
+    {
+        List<BookBean> bookBeans=fileDao.getBookBeans(fileName);
+        if (bookBeans==null)
+        {
+            return ServerResponse.createErrorMessage("没有此小说");
+        }
+        return ServerResponse.createSuccessMessageAndData("有"+bookBeans.size()+"条结果",bookBeans);
     }
 }

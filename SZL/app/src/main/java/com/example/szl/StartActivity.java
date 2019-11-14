@@ -74,6 +74,7 @@ public class StartActivity extends AppCompatActivity {
                 else if(responseRec.getStatus()==0)
                 {
                     dbOperation.add(user);
+                    Toast.makeText(StartActivity.this,dbOperation.getUserID(),Toast.LENGTH_SHORT).show();
                     Intent intent=new Intent(StartActivity.this,TestActivity.class);
                     startActivity(intent);
                 }
