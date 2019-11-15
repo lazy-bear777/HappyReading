@@ -23,7 +23,7 @@ public interface FileDao {
 
     public List<File> selectFileByUserID(@Param("userID")int userID);
 
-    //通过文件名查找所有文件
+    //通过文件名查找所有文件+u
     public List<File> selectFileByFileName(@Param("fileName")String fileName);
 
     public List<File> selectAllFile();

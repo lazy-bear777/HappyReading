@@ -16,13 +16,8 @@ public class IFileServiceImpl implements IFileService {
     @Autowired
     FileDao fileDao;
 
-    @Override
-    public ServerResponse addFile(File file) {
-        fileDao.addFileInfo(file);
-        return ServerResponse.createSuccessMessage("上传成功");
-    }
 
-    public ServerResponse<List<BookBean>> download(String fileName)
+    public ServerResponse<List<BookBean>> search(String fileName)
     {
         List<BookBean> bookBeans=fileDao.getBookBeans(fileName);
         if (bookBeans==null)

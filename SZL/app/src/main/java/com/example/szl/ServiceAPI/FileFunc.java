@@ -111,10 +111,5 @@ public class FileFunc {
         return null;
     }
 
-    public static void fileUpload(int userID,String fileName,Context context)
-    {
-        Retrofit retrofit= RetrofitGet.getRetrofit();
-        FileUpload fileUpload=retrofit.create(FileUpload)
-    }
 
 }

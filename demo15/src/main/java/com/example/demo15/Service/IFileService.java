@@ -9,7 +9,6 @@ import java.util.List;
 public interface IFileService {
 
 
-    public ServerResponse addFile(File file);
 
-    public ServerResponse<List<BookBean>> download(String fileName);
+    public ServerResponse<List<BookBean>> search(String fileName);
 }
