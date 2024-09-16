@@ -16,10 +16,10 @@ public class fileDownLoad {
     @Autowired
     IFileService iFileService;
 
-    @RequestMapping("/download")
+    @RequestMapping("/search")
     @ResponseBody
-    public ServerResponse<List<BookBean>> download(String fileName)
+    public ServerResponse<List<BookBean>> search(String fileName)
     {
-        return iFileService.download(fileName);
+        return iFileService.search(fileName);
     }
 }
